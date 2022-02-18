@@ -15,7 +15,7 @@ $data = json_decode($getfile);
 				<? foreach ($data as $person){
 				?>
 				<tr>
-					<td><?php echo $person[0];?></td>
+					<td><?php echo $person[0]; ?></td>
 					<td><?php echo $person[1]; ?></td>
 					<td><?php echo $person[2]; ?></td>
 					<td><?php echo $person[3]; ?></td>

@@ -7,11 +7,11 @@
         $gender = $_POST['gender'];
 		$person = array($fname, $lname, $age, $gender); 
       
-		$file = file_get_contents('people.json');
+		$file = file_get_contents('user.json');
 		$data = json_decode($file, true);
 		
 		array_push($data, $person);
-		file_put_contents("people.json", json_encode($data));
+		file_put_contents("user.json", json_encode($data));
 		header("Location: index.php");
 
     }
