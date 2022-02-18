@@ -1,3 +1,7 @@
+<?php
+    $getfile = file_get_contents('people.json');
+    $data = json_decode($getfile);
+?>
 <html lang="en">
 <body>
     <div>
