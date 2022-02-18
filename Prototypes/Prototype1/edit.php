@@ -1,4 +1,37 @@
+<?php
 
+    
+    if(isset($_GET['id'])){
+        $data = json_decode(file_get_contents('people.json'));
+
+        foreach($data as $value){
+            if($value[0]== $_GET['id']){
+                $editPerson = $value;
+                break;
+            }
+        }
+    }
+
+    if(!empty($_POST)){
+		$id = uniqid();
+        $firstName = $_POST['fname'];
+        $lastName = $_POST['lname'];
+        $age = $_POST['age'];
+        $editPerson = array($id, $firstName, $lastName, $age);
+        $file = file_get_contents('people.json');
+        $data = json_decode($file);
+
+       for($i = 0; $i < count($data); $i++){
+        if($data[$i][0]== $_GET['id']){
+            $data[$i] = $editPerson;
+            break;
+        }
+       }
+        file_put_contents('people.json', json_encode($data));
+        header("Location: index.php");
+
+    }
+?>
 
 
 <html lang="en">
