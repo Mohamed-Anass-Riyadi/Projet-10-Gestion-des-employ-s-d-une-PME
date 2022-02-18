@@ -1,5 +1,5 @@
 <?php
-$getfile = file_get_contents('people.json');
+$getfile = file_get_contents('user.json');
 $data = json_decode($getfile);
 ?>
 <div >
