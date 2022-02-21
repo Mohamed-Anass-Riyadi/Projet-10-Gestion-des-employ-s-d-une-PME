@@ -2,6 +2,7 @@
 $getfile = file_get_contents('user.json');
 $data = json_decode($getfile);
 ?>
+
 <div >
 		<a href="insert.php"><i></i> Insert Data</a>
 			<table>
