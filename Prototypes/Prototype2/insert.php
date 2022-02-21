@@ -1,3 +1,22 @@
+<?php
+
+    include 'config.php';
+    if(!empty($_POST)){
+        $firstName = $_POST['fname'];
+        $lastName = $_POST['lname'];
+        $age = $_POST['age'];
+        $person = array($firstName, $lastName, $age);
+
+        // sql insert query
+        $sqlInsertQuery = "INSERT INTO person2(firstname, lastname, age) 
+                                VALUES('$firstName', '$lastName', '$age')";
+        
+        mysqli_query($conn, $sqlInsertQuery);
+     
+        header("Location: index.php");
+
+    }
+?>
 
 <body>
 <div>
