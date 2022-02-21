@@ -1,3 +1,11 @@
+<?php
+    include 'config.php';
+
+    $sqlGetData = 'SELECT id, firstname, lastname, age FROM person2';
+    $result = mysqli_query($conn ,$sqlGetData);
+    $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+?>
 
 <body>
     <div>
