@@ -18,6 +18,20 @@
                 <th>Action</th>
             </tr>
 
+            <?php
+                    foreach($data as $employee){
+            ?>
+
+            <tr>
+                <td><?= $employee->getfname()?></td>
+                <td><?= $employee->getlname()?></td>
+                <td><?= $employee->getage()?></td>
+                <td>
+                    <a href=".php?id=<?php echo $employee->getId() ?>">Edit</a>
+                    <a href=".php?id=<?php echo $employee->getId() ?>">delete</a>
+                </td>
+            </tr>
+            <?php }?>
         </table>
     </div>
 </body>
