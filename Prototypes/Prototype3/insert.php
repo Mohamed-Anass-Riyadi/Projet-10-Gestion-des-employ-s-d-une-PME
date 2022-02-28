@@ -31,7 +31,10 @@
 				<span></span>
 			</div>
 		
-    
+            <div class="form-actions">
+					<button type="submit">Create</button>
+					<a href="index.php">Back</a>
+			</div>
 		
 		</form>
         </div></div>        
