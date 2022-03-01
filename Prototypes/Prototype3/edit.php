@@ -11,8 +11,8 @@
 
     if(isset($_POST['update'])){
 		$id = $_POST['id'];
-		$fname = $_POST['fname'];
-		$lname = $_POST['lname'];
+		$fname = $_POST['firstname'];
+		$lname = $_POST['lastname'];
 		$age = $_POST['age'];
   
 

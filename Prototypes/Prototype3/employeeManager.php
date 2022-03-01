@@ -7,7 +7,7 @@
 
         private function getConnection(){
             if(is_null($this->Connection)){
-                $this->Connection = mysqli_connect('localhost', 'yahya', 'DIXTERMORGEN', 'demo');
+                $this->Connection = mysqli_connect('localhost', 'Anass', 'aaaaaaaaaa', 'demo');
 
                 if(!$this->Connection){
                     $message = 'Connection Error: ' .mysqli_connect_error();
@@ -20,7 +20,7 @@
    
 
         public function getAllEmployees(){
-            $sqlGetData = 'SELECT id, fname, lname, age FROM person1';
+            $sqlGetData = 'SELECT id, firstname, lastname, age FROM person2';
             $result = mysqli_query($this->getConnection() ,$sqlGetData);
             $employeesList = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
@@ -28,8 +28,8 @@
             foreach($employeesList as $employee_list){
                 $employee = new Employee();
                 $employee->setId($employee_list['id']);
-                $employee->setfname($employee_list['fname']);
-                $employee->setlname($employee_list['lname']);
+                $employee->setfname($employee_list['firstname']);
+                $employee->setlname($employee_list['lastname']);
                 $employee->setage($employee_list['age']);
                 array_push($employees, $employee);
             }
@@ -45,7 +45,7 @@
 
 
                  // sql insert query
-        $sqlInsertQuery = "INSERT INTO person1(fname, lname, age) 
+        $sqlInsertQuery = "INSERT INTO person2(firstname, lastname, age) 
                             VALUES('$fname', 
                                     '$lname',
                                     '$age'
@@ -56,7 +56,7 @@
 
 
         public function deleteEmployee($id){
-            $sqlDeleteQuery = "DELETE FROM person1 WHERE id= '$id'";
+            $sqlDeleteQuery = "DELETE FROM person2 WHERE id= '$id'";
 
             mysqli_query($this->getConnection(), $sqlDeleteQuery);
         }
@@ -65,9 +65,9 @@
         public function editEmployee($id, $fname, $lname, $age){
      
             // Update query
-            $sqlUpdateQuery = "UPDATE person1 SET 
-                         fname='$fname', 
-                         lname='$lname', 
+            $sqlUpdateQuery = "UPDATE person2 SET 
+                         fname='$firstname', 
+                         lname='$lastname', 
                          age='$age' 
                          WHERE id=$id";
      
@@ -82,7 +82,7 @@
         }
 
         public function getEmployee($id){
-            $sqlGetQuery = "SELECT * FROM person1 WHERE id= $id";
+            $sqlGetQuery = "SELECT * FROM person2 WHERE id= $id";
         
             // get result
             $result = mysqli_query($this->getConnection(), $sqlGetQuery);
