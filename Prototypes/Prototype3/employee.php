@@ -13,19 +13,19 @@
         }
 
         public function getfname(){
-            return $this->firstName;
+            return $this->fname;
         }
 
         public function setfname($value){
-            $this->firstName = $value;
+            $this->fname = $value;
         }
 
         public function getlname(){
-            return $this->lastName;
+            return $this->lname;
         }
 
         public function setlname($value){
-            $this->lastName= $value;
+            $this->lname= $value;
         }
 
 

@@ -66,8 +66,8 @@
      
             // Update query
             $sqlUpdateQuery = "UPDATE person2 SET 
-                         fname='$firstname', 
-                         lname='$lastname', 
+                         firstname='$fname', 
+                         lastname='$lname', 
                          age='$age' 
                          WHERE id=$id";
      
@@ -92,8 +92,8 @@
 
             $employee = new Employee();
             $employee->setId($employee_data['id']);
-            $employee->setfname($employee_data['fname']);
-            $employee->setlname($employee_data['lname']);
+            $employee->setfname($employee_data['firstname']);
+            $employee->setlname($employee_data['lastname']);
             $employee->setage($employee_data['age']);
             
             return $employee;

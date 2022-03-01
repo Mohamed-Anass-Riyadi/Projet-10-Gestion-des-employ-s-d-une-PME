@@ -36,8 +36,8 @@
                 <td><?= $employee->getlname()?></td>
                 <td><?= $employee->getage()?></td>
                 <td>
-                    <a href=".php?id=<?php echo $employee->getId() ?>">Edit</a>
-                    <a href=".php?id=<?php echo $employee->getId() ?>">delete</a>
+                    <a href="edit.php?id=<?php echo $employee->getId() ?>">Edit</a>
+                    <a href="delete.php?id=<?php echo $employee->getId() ?>">delete</a>
                 </td>
             </tr>
             <?php }?>
