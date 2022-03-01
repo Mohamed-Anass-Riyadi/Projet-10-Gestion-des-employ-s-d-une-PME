@@ -1,4 +1,21 @@
 
+<?php
+	include 'employeeManager.php';
+
+    if(!empty($_POST)){
+		$employee = new Employee();	
+		$employeeManager = new EmployeeManager();
+
+        $employee->setfname($_POST['fname']);
+        $employee->setlname($_POST['lname']);
+        $employee->setage($_POST['age']);
+
+		$employeeManager->insertEmployee($employee);
+     
+        header("Location: index.php");
+
+    }
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -32,7 +49,7 @@
 			</div>
 		
             <div class="form-actions">
-					<button type="submit">Create</button>
+			<button type="submit">Create</button>
 					<a href="index.php">Back</a>
 			</div>
 		
