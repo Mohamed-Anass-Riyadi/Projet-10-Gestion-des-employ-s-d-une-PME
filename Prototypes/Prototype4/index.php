@@ -1,3 +1,10 @@
+<?php
+    include 'employeeManager.php';
+
+    $employeeManager = new EmployeeManager();
+    $data = $employeeManager->getAllEmployees();
+
+?>
 <body>
     <div>
         <a href="insert.php">Insert Data</a>
