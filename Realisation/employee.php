@@ -1,87 +1,106 @@
 <?php
     class Employee {
+
         private $id;
         private $registrationNumber;
         private $firstName;
         private $lastName;
         private $birthDate;
-        private $department;
+        private $function;
         private $salary;
-        private $occupation;
+        private $departement;
         private $photo;
 
+        
 
-        function getId(){
+
+        
+        
+
+      
+
+        public function getId(){
             return $this->id;
         }
-
-        function setId($value) {
+        public function setId($value){
             $this->id = $value;
         }
-     
-        function getRegistrationNumber() {
-            return $this->registrationNumber;
-        }
 
-        function setRegistrationNumber($value){
-            $this->registrationNumber = $value;
-        }
-
-        function getFirstName(){
+        public function getFirstName(){
             return $this->firstName;
         }
 
-        function setFirstName($value){
+        public function setFirstName($value){
             $this->firstName = $value;
         }
 
-        function getLastName(){
+        public function getLastName(){
             return $this->lastName;
         }
 
-        function setLastName($value){
-            $this->lastName = $value;
+        public function setLastName($value){
+            $this->lastName= $value;
         }
 
-        function getBirthDate(){
+        public function getBirthDate(){
             return $this->birthDate;
         }
 
-        function setBirthDate($value){
-            $this->birthDate = $value;
+        public function setBirthDate($value){
+            $this->birthDate= $value;
         }
 
-        function getDepartment(){
-            return $this->department;
-        }  
 
-        function setDepartment($value){
-            $this->department = $value;
+
+
+        public function getRegistrationNumber(){
+            return $this->registrationNumber;
         }
 
-        function getSalary(){
+        public function setRegistrationNumber($value){
+            $this->registrationNumber= $value;
+        }
+
+
+
+        public function getFunctionEmployee(){
+            return $this->functionEmployee;
+        }
+
+        public function setFunctionEmployee($value){
+            $this->functionEmployee= $value;
+        }
+
+
+
+        public function getSalary(){
             return $this->salary;
         }
 
-        function setSalary($value){
-            $this->salary = $value;
+        public function setSalary($value){
+            $this->salary= $value;
         }
 
 
-        function getOccupation(){
-            return $this->occupation;
+        public function getDepartement(){
+            return $this->departement;
         }
 
-        function setOccupation($value){
-            $this->occupation = $value;
+        public function setDepartement($value){
+            $this->departement= $value;
         }
 
-        function getPhoto(){
+        public function getPhoto(){
             return $this->photo;
         }
 
-        function setPhoto($value){
-            $this->photo = $value;
+        public function setPhoto($value){
+            $this->photo= $value;
         }
+
+
+
+
+      
     }
 ?>

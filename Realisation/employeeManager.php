@@ -1,12 +1,13 @@
 <?php
-    require_once 'employee.php';
+    include 'employee.php';
 
     class EmployeeManager {
+
         private $Connection = null;
 
         private function getConnection(){
             if(is_null($this->Connection)){
-                $this->Connection = mysqli_connect('localhost', 'test', 'test123', 'realisation');
+                $this->Connection = mysqli_connect('localhost', 'Anass', 'aaaaaaaaaa', 'realisation');
 
                 if(!$this->Connection){
                     $message = 'Connection Error: ' .mysqli_connect_error();
@@ -17,96 +18,105 @@
         }
 
         public function getAllEmployees(){
-            $sqlGetData = 'SELECT * FROM employee';
-            $result = mysqli_query($this->getConnection(), $sqlGetData);
+            $sqlGetData = 'SELECT id,registrationNumber, firstName, lastName, birthday, functionEmployee ,salary,departement,photo  FROM employees ';
+            $result = mysqli_query($this->getConnection() ,$sqlGetData);
             $employeesList = mysqli_fetch_all($result, MYSQLI_ASSOC);
-    
+
             $employees = array();
-    
-            foreach($employeesList as $employeeList){
+            foreach($employeesList as $employee_list){
                 $employee = new Employee();
-                $employee->setId($employeeList['id']);
-                $employee->setRegistrationNumber($employeeList['registrationNumber']);
-                $employee->setFirstName($employeeList['firstName']);
-                $employee->setLastName($employeeList['lastName']);
-                $employee->setBirthDate($employeeList['birthDate']);
-                $employee->setDepartment($employeeList['department']);
-                $employee->setSalary($employeeList['salary']);
-                $employee->setOccupation($employeeList['occupation']);
-                $employee->setPhoto($employeeList['photo']);
-                array_push($employees, $employee);  
+                $employee->setId($employee_list['id']);
+                $employee->setRegistrationNumber($employee_list['registrationNumber']);
+                $employee->setFirstName($employee_list['firstName']);
+                $employee->setLastName($employee_list['lastName']);
+                $employee->setBirthDate($employee_list['birthday']);
+                $employee->setFunctionEmployee($employee_list['functionEmployee']);
+                $employee->setSalary($employee_list['salary']);
+                $employee->setDepartement($employee_list['departement']);
+                $employee->setPhoto($employee_list['photo']);
+
+                array_push($employees, $employee);
             }
+
             return $employees;
         }
 
-        private function filterUserInput($employee){
-            
-            $filteredEmployee = new Employee();
 
-            $registrationNumber = mysqli_escape_string($this->getConnection(),$employee->getRegistrationNumber());
-            $firstName = mysqli_escape_string($this->getConnection(),$employee->getFirstName());
-            $lastName = mysqli_escape_string($this->getConnection(),$employee->getLastName());
-            $birthDate = mysqli_escape_string($this->getConnection(),$employee->getBirthDate());
-            $department = mysqli_escape_string($this->getConnection(),$employee->getDepartment());
-            $salary = mysqli_escape_string($this->getConnection(),$employee->getSalary());
-            $occupation = mysqli_escape_string($this->getConnection(),$employee->getOccupation());
-            $photo = mysqli_escape_string($this->getConnection(),$employee->getPhoto());
-
-            $filteredEmployee->setRegistrationNumber($registrationNumber);
-            $filteredEmployee->setFirstName($firstName);
-            $filteredEmployee->setLastName($lastName);
-            $filteredEmployee->setBirthDate($birthDate);
-            $filteredEmployee->setDepartment($department);
-            $filteredEmployee->setSalary($salary);
-            $filteredEmployee->setOccupation($occupation);
-            $filteredEmployee->setPhoto($photo);
-
-            return $filteredEmployee;
-        }
-
-        public function insertEmployee($employeeInput){
-
-            $employee = $this->filterUserInput($employeeInput);
-
+        public function insertEmployee($employee){
             $registrationNumber = $employee->getRegistrationNumber();
             $firstName = $employee->getFirstName();
             $lastName = $employee->getLastName();
             $birthDate = $employee->getBirthDate();
-            $department = $employee->getDepartment();
-            $salary = $employee->getSalary();
-            $occupation = $employee->getOccupation();
+            $functionEmployee= $employee->getFunctionEmployee();
+            $salary=$employee->getSalary();
+            $departement = $employee->getDepartement();
             $photo = $employee->getPhoto();
+            
+           
 
-            // sql insert query
-            $sqlInsertQuery = "INSERT INTO employee
-                                (registrationNumber, 
-                                firstName, 
-                                lastName, 
-                                birthDate,
-                                department,
-                                salary, 
-                                occupation, 
-                                photo) 
-                                VALUES('$registrationNumber', 
-                                        '$firstName',
-                                        '$lastName',
-                                        '$birthDate', 
-                                        '$department', 
-                                        '$salary', 
-                                        '$occupation', 
-                                        '$photo')";
+                 // sql insert query
+        $sqlInsertQuery = "INSERT INTO employees (
+                                    registrationNumber,
+                                    firstName, 
+                                    lastName, 
+                                    birthday ,
+                                    functionEmployee ,
+                                    salary,
+                                    departement,
+                                    photo) 
+                            VALUES(
+                                    '$registrationNumber', 
+                                    '$firstName',
+                                    '$lastName',
+                                    '$birthDate',
+                                    '$functionEmployee',
+                                    '$salary',
+                                    '$departement',
+                                    '$photo'
+                                    )";
 
+                                   
         mysqli_query($this->getConnection(), $sqlInsertQuery);
         }
 
-        // sql delete query
-        public function deleteEmployee($id){
-            $sqlDeleteQuery = "DELETE FROM employee WHERE id= $id";
-            mysqli_query($this->getConnection(), $sqlDeleteQuery);
-        }
+
         
+
+// Edit function.
+        public function editEmployee($id,
+                                    $registrationNumber,
+                                    $firstName,
+                                    $lastName,
+                                    $birthDate,
+                                    $functionEmployee,
+                                    $salary,
+                                    $departement,
+                                    $photo){
+     
+            // Update query
+            $sqlUpdateQuery = "UPDATE employees SET 
+                         registrationNumber='$registrationNumber',
+                         firstName='$firstName', 
+                         lastName='$lastName', 
+                         birthday='$birthDate' ,
+                         functionEmployee ='$functionEmployee',
+                         salary='$salary',
+                         departement='$departement',
+                         photo='$photo'
+                         WHERE id=$id";
+     
+             // Make query 
+             mysqli_query($this->getConnection(), $sqlUpdateQuery);
+
+             if(mysqli_error($this->getConnection())){
+                 $msg = 'Erreur' . mysqli_errno($this->getConnection());
+                 throw new Exception($msg);
+             }
+       
+        }
+
         public function getEmployee($id){
-            $sqlGetQuery = "SELECT * FROM employee WHERE id= $id";
+            $sqlGetQuery = "SELECT * FROM employees WHERE id= $id";
         
             // get result
             $result = mysqli_query($this->getConnection(), $sqlGetQuery);
@@ -115,20 +125,33 @@
             $employee_data = mysqli_fetch_assoc($result);
 
             $employee = new Employee();
-
             $employee->setId($employee_data['id']);
             $employee->setRegistrationNumber($employee_data['registrationNumber']);
             $employee->setFirstName($employee_data['firstName']);
             $employee->setLastName($employee_data['lastName']);
-            $employee->setBirthDate($employee_data['birthDate']);
-            $employee->setDepartment($employee_data['department']);
+            $employee->setBirthDate($employee_data['birthday']);
+            $employee->setFunctionEmployee($employee_data['functionEmployee']);
             $employee->setSalary($employee_data['salary']);
-            $employee->setOccupation($employee_data['occupation']);
+            $employee->setDepartement($employee_data['departement']);
             $employee->setPhoto($employee_data['photo']);
-            return $employee;
-        }  
 
+            return $employee;
+        }
+
+
+
+
+        public function delete($id){
+            $sql = "DELETE FROM employees WHERE id= '$id'";
+            mysqli_query($this->getConnection(), $sql);
+        }
+
+
+        
 
 
     }
+
+
+    
 ?>
